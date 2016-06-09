@@ -1,107 +1,334 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Capture Photo</title>
 
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
-    <script type="text/javascript" charset="utf-8">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="theme-color" content="#2196f3">
+    <title>XBOX</title>
+    <link rel="stylesheet" href="css/framework7.material1.css">
+    <link rel="stylesheet" href="css/framework7.material.colors.css">
+    <link rel="stylesheet" href="css/my-app-material.css">
+    <link rel="icon" href="img/icon.png">
+</head>
 
-    var pictureSource;   // picture source
-    var destinationType; // sets the format of returned value 
+<body>
+    <div class="statusbar-overlay"></div>
+    <div class="panel-overlay"></div>
+    <div class="panel panel-left panel-cover">
+        <div class="view navbar-fixed">
+            <div class="pages">
+                <div data-page="panel-left" class="page">
+                    <div class="navbar" style="background-color:white;">
+                        <div class="navbar-inner">
+                            <div class="center"><i class="logo"></i></div>
+                        </div>
+                    </div>
+                    <div class="page-content" style="padding-top: 25px;">
+                        <div class="content-block">
+                            <div class="list-block">
+                                <ul>
+                                    <li>
+                                        <!-- Add By Hieu 17/11/2015 - Page tao don hang -  START -->
+                                        <a href="purchase-order.html" class="item-link close-panel" id="create_purchase_order">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/new.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Tạo đơn hàng</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <!-- Add By Hieu 17/11/2015 - Page tao don hang -  END -->
+                                    <li>
+                                        <a href="media-lists.html" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/new.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Đơn hàng mới</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="list-view.html" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/history.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Lịch sử</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="media-lists.html" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/login.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Đăng nhập</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="modals.html" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/coin.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Kết nối dài lâu</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="popover.html" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/notify.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Thông báo</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="help.html" class="item-link close-panel">
+                                            <div class="item-content">
+                                                <div class="item-media"><i class="icon icon-f7"><img src="img/icon/notify.png"></i></div>
+                                                <div class="item-inner">
+                                                    <div class="item-title">Hướng dẫn </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="views">
+        <div class="view view-main">
+            <div class="pages navbar-fixed">
+                <div data-page="index" class="page">
+                    <div class="navbar">
+                        <div class="navbar-inner">
 
-    // Wait for Cordova to connect with the device
-    //
-    document.addEventListener("deviceready",onDeviceReady,false);
+                            <div class="left"><a href="#" class="open-panel link icon-only"><i class="icon icon-bars"></i></a></div>
+                            <div class="center">SHIPBOX</div>
+                        </div>
+                    </div>
+                    <div class="page-content hide-bars-on-scroll" style="background-color:#F3F3F3">
+                        <div class="content-block" style="margin: 10px 0;padding: 0 10px;">
+                            <div class="list-block">
+                                <ul>
+                                    <!-- BEGIN Group 1-->
+                                    <div class="group_by">
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/from.png"></i></div>
+                                            <div class="item-inner item-wrapper">
+                                                <div style="width:100%;height: 55px;">
+                                                    <label>Điểm lấy hàng</label>
+                                                    <span>
+                            <input type="text" placeholder="" value="148 Kỳ Đồng, Phường 6, Quận 3, Hồ Chí Minh" style="width:90%" />
+                            <a href="#" id="open_map_pickup_index" class="open_map_pickup_index" style="position: inherit;top: -31px;float: right;"><img src="img/icon/fly.png"></a>
+                          </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/to.png"></i></div>
+                                            <div class="item-inner item-wrapper">
+                                                <div style="width:100%;height: 55px;">
+                                                    <label>Điểm giao hàng</label>
+                                                    <span><input type="text" placeholder="" value="34 Lê Hồng Phong, P2, Quận 10, Hồ Chí Minh" />
+                            <a href="#" id="open_map_delivery_index" class="open_map_delivery_index" style="position: inherit;top: -31px;float: right;"><img src="img/icon/fly.png" ></a>
+                          </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <!-- END Group 1-->
+                                    <!-- BEGIN Group 2-->
+                                    <div class="group_by">
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/truck.png"></i></div>
+                                            <a href="panel-right2.html" class="item-inner item-wrapper item-link">
+                                                <div class="item-title">
+                                                    <label>XE TÀI 1 </label> - <span>Nhà xe Phương Trang</span>
+                                                    <br>
+                                                    <img src="img/icon/five_star.png">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/bike.png"></i></div>
+                                            <a href="panel-right2.html" class="item-inner item-wrapper item-link">
+                                                <div class="item-title">
+                                                    <label>XE MÁY (JAMES)</label> - <span>Tự Do</span>
+                                                    <br>
+                                                    <img src="img/icon/five_star.png">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/car.png"></i></div>
+                                            <a href="panel-right2.html" class="item-inner item-wrapper item-link">
+                                                <div class="item-title">
+                                                    <label>XE HƠI (HÙNG)</label> - <span>Tự Do</span>
+                                                    <br>
+                                                    <img src="img/icon/five_star.png">
 
-    // Cordova is ready to be used!
-    //
-    function onDeviceReady() {
-        pictureSource=navigator.camera.PictureSourceType;
-        destinationType=navigator.camera.DestinationType;
-    }
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/bike.png"></i></div>
+                                            <a href="panel-right2.html" class="item-inner item-wrapper item-link">
+                                                <div class="item-title">
+                                                    <label>XE MÁY (LÊ HOÀNG)</label> - <span>Quantium</span>
+                                                    <br>
+                                                    <img src="img/icon/five_star.png">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/truck.png"></i></div>
+                                            <a href="panel-right2.html" class="item-inner item-wrapper item-link">
+                                                <div class="item-title">
+                                                    <label>XE TẢI NHẸ (HÙNG)</label> - <span>KERRY EXPRESS</span>
+                                                    <br>
+                                                    <img src="img/icon/five_star.png">
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media">&nbsp;</div>
+                                            <a href="panel-right2.html" class="item-inner item-wrapper item-link">
+                                                <div class="item-title"><img src="img/icon/add.png" style="margin-top: 7px;">
+                                                    <label>Xem thêm ...</label>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </div>
+                                    <!-- END Group 2-->
+                                    <!-- BEGIN Group 3-->
+                                    <div class="group_by">
+                                        <ul>
+                                            <li>
+                                                <div class="item-content">
+                                                    <div class="item-media"><i class="icon ion-ios7-telephone-outline"><img src="img/icon/save.png"></i></div>
+                                                    <div class="item-inner">
+                                                        <label>Dịch vụ gởi hàng tiết kiệm</label>
+                                                        <br>
+                                                        <label>20,000 VNĐ /kg/km</label>
+                                                        <input type="checkbox" name="ks-checkbox" style="float: right;height: 20px;
+    width: 20px;" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="item-content">
+                                                    <div class="item-media"><i class="icon ion-ios7-telephone-outline"><img src="img/icon/security.png"></i></i>
+                                                    </div>
+                                                    <div class="item-inner">
+                                                        <label>Dịch vụ gởi hàng đảm bảo</label>
+                                                        <br>
+                                                        <label>20,000 VNĐ /kg/km</label>
+                                                        <input type="checkbox" name="ks-checkbox" style="float: right;height: 20px;
+    width: 20px;" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="item-content">
+                                                    <div class="item-media"><i class="icon ion-ios7-telephone-outline"><img src="img/icon/fire.png"></i></i>
+                                                    </div>
+                                                    <div class="item-inner">
+                                                        <label>Dịch vụ gởi hàng hỏa tốc</label>
+                                                        <br>
+                                                        <label>20,000 VNĐ /kg/km</label>
+                                                        <input type="checkbox" name="ks-checkbox" style="float: right;height: 20px;
+    width: 20px;" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="item-content">
+                                                    <div class="item-media"><i class="icon ion-ios7-telephone-outline"><img src="img/icon/big.png"></i></i>
+                                                    </div>
+                                                    <div class="item-inner">
+                                                        <label>Dịch vụ gởi hàng cồng kềnh</label>
+                                                        <br>
+                                                        <label>20,000 VNĐ /kg/km</label>
+                                                        <input type="checkbox" name="ks-checkbox" style="float: right;height: 20px;
+    width: 20px;" />
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="item-content">
+                                                    <div class="item-media"><i class="icon ion-ios7-telephone-outline"><img src="img/icon/gift.png"></i></i>
+                                                    </div>
+                                                    <div class="item-inner">
+                                                        <label>Dịch vụ đóng / gói quà</label>
+                                                        <br>
+                                                        <label>20,000 VNĐ /kg/km</label>
+                                                        <input type="checkbox" name="ks-checkbox" style="float: right;height: 20px;
+    width: 20px;" />
 
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoDataSuccess(imageData) {
-      // Uncomment to view the base64 encoded image data
-      // console.log(imageData);
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- END Group 3-->
+                                    <!-- BEGIN Group 4-->
+                                    <div class="group_by">
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/coupon.png"></i></div>
+                                            <div class="item-inner item-wrapper">
+                                                <div style="width:100%">
+                                                    <input type="text" placeholder="MÃ KHUYẾN MÃI" value="" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="item-content">
+                                            <div class="item-media"><i class="icon icon-f7"><img src="img/icon/note.png"></i></div>
+                                            <div class="item-inner item-wrapper">
+                                                <div style="width:100%">
+                                                    <input type="text" placeholder="GHI CHÚ" value="" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                    <!-- END Group 4-->
+                                </ul>
+                            </div>
+                            <p class="buttons-row">
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="toolbar">
+                        <div class="toolbar-inner">
+                            <a href="#" class="link"></a>
+                            <a href="#" class="link">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ĐẶT HÀNG &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                            <a href="#" class="link"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/framework7.js"></script>
+        <script type="text/javascript" src="js/my-app.js"></script>
+        <script type="text/javascript" language="javascript" src="js/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="js/gmaps.js"></script>
+</body>
 
-      // Get image handle
-      //
-      var smallImage = document.getElementById('smallImage');
-
-      // Unhide image elements
-      //
-      smallImage.style.display = 'block';
-
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      smallImage.src = "data:image/jpeg;base64," + imageData;
-    }
-
-    // Called when a photo is successfully retrieved
-    //
-    function onPhotoURISuccess(imageURI) {
-      // Uncomment to view the image file URI 
-      // console.log(imageURI);
-
-      // Get image handle
-      //
-      var largeImage = document.getElementById('largeImage');
-
-      // Unhide image elements
-      //
-      largeImage.style.display = 'block';
-
-      // Show the captured photo
-      // The inline CSS rules are used to resize the image
-      //
-      largeImage.src = imageURI;
-    }
-
-    // A button will call this function
-    //
-    function capturePhoto() {
-      // Take picture using device camera and retrieve image as base64-encoded string
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: navigator.camera.DestinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function capturePhotoEdit() {
-      // Take picture using device camera, allow edit, and retrieve image as base64-encoded string  
-      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 20, allowEdit: true,
-        destinationType: navigator.camera.DestinationType.DATA_URL });
-    }
-
-    // A button will call this function
-    //
-    function getPhoto(source) {
-      // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50, 
-        destinationType: navigator.camera.DestinationType.FILE_URI,
-        sourceType: source });
-    }
-
-    // Called if something bad happens.
-    // 
-    function onFail(message) {
-      alert('Failed because: ' + message);
-    }
-
-    </script>
-  </head>
-  <body>
-    <button onclick="capturePhoto();">Capture Photo</button> <br>
-    <button onclick="capturePhotoEdit();">Capture Editable Photo</button> <br>
-    <button onclick="getPhoto(navigator.camera.PictureSourceType.PHOTOLIBRARY);">From Photo Library</button><br>
-    <button onclick="getPhoto(navigator.camera.PictureSourceType.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-    <img style="display:none;width:60px;height:60px;" id="smallImage" src="" />
-    <img style="display:none;" id="largeImage" src="" />
-  </body>
 </html>
